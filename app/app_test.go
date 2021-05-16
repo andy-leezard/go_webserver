@@ -33,7 +33,7 @@ func TestBarPathHandler_WithoutName(t *testing.T) {
 
 	assert.Equal(http.StatusOK, res.Code)
 	data, _ := ioutil.ReadAll(res.Body)
-	assert.Equal("Hello World", string(data))
+	assert.Equal("Hello World!", string(data))
 }
 
 func TestBarPathHandler_WithName(t *testing.T) {
