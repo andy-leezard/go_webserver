@@ -10,6 +10,8 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// the underscore is a blank identifier.
+
 func main() {
 	db := initDB("urlshortener.db")
 	defer db.Close()
@@ -33,4 +35,31 @@ func initDB(filepath string) *sql.DB {
 	}
 
 	return db
+}
+
+func createTable(db *sql.DB) error {
+	createTableSQL := `CREATE TABLE IF NOT EXISTS urls (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		short_url TEXT NOT NULL,
+		long_url TEXT NOT NULL
+	);`
+
+	_, err := db.Exec(createTableSQL)
+	return err
+}
+
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	// Render home page with a form for URL submission
+}
+
+func CreateShortURLHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Handle URL submission and generate short URL
+	}
+}
+
+func RedirectHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Redirect to the long URL corresponding to the short URL
+	}
 }
