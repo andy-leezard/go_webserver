@@ -1,2 +1,2 @@
 # go_webserver
-Testing webserver (Go version 1.15)
+Testing webserver (Go version 1.16)
